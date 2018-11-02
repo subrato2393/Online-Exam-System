@@ -22,7 +22,7 @@ namespace OnlineExams.Models
         [NotMapped]
         public HttpPostedFileBase Logo { get; set; }
         public virtual List<Course> Courses { get; set; }
-        public  virtual List<Trainer> Trainers { get; set; }
+        public virtual List<Trainer> Trainers { get; set; }
       
     }
 }

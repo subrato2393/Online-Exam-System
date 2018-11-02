@@ -24,6 +24,13 @@ namespace OnlineExamApp.Controllers
             return View(db.Organizations.ToList());
         }
 
+        //nazmulhyder : 01.11.18
+        public ActionResult GetAllOrganization()
+        {
+            var organizationList = db.Organizations.ToList<Organization>();
+            return Json(new {data = organizationList}, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Organizations/Details/5
         public ActionResult Details(int? id)
         {
