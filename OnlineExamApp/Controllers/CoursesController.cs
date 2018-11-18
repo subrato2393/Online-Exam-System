@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using OnlineExams.BLL;
 using OnlineExams.DataContext;
 using OnlineExams.Models;
@@ -17,6 +18,7 @@ namespace OnlineExamApp.Controllers
     {
         private OnlineExamDbContext db = new OnlineExamDbContext();
         CourseTrainerManager courseTrainerManager = new CourseTrainerManager();
+        ExamManager examManager = new ExamManager();
         // GET: Courses
         public ActionResult Index()
         {
@@ -125,6 +127,30 @@ namespace OnlineExamApp.Controllers
             var courseTrainers = AutoMapper.Mapper.Map<List<CourseTrainer>>(Trainers);
             bool IsSaved = courseTrainerManager.Add(courseTrainers);
             if (IsSaved)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
+
+        //public JsonResult GetStudentById(int CourseId)
+        //{
+        //    var model = db.Exams.Where(x => x.CourseId == CourseId).SingleOrDefault();
+        //    string value = string.Empty;
+        //    value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
+        //    {
+        //        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        //    });
+        //    return Json(value, JsonRequestBehavior.AllowGet);
+        //}
+        public ActionResult CreateExam(List<CreateExamVM> Exams)
+        {
+            var exams = AutoMapper.Mapper.Map<List<Exam>>(Exams);
+            bool IsSaved = examManager.Add(exams);
+            if(IsSaved)
             {
                 return Json(true);
             }

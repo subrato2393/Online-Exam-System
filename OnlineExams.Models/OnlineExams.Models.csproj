@@ -76,6 +76,7 @@
     <Compile Include="Trainer.cs" />
     <Compile Include="View Model\CourseEditVM.cs" />
     <Compile Include="View Model\CourseTrainerVM.cs" />
+    <Compile Include="View Model\CreateExamVM.cs" />
     <Compile Include="View Model\TrainerCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>

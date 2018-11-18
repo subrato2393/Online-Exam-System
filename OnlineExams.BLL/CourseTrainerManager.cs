@@ -1,5 +1,6 @@
 ﻿using OnlineExam.Repository;
 using OnlineExams.Models;
+using OnlineExams.Models.View_Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,15 @@ namespace OnlineExams.BLL
         public CourseTrainerManager() : base(new CourseTrainerRepository())
         {
         }
+
+        //public bool Add(List<CourseEditVM> courseTrainers)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public bool Add(List<CourseEditVM> courseTrainers)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

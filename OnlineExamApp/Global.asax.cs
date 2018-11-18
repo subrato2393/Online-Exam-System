@@ -24,8 +24,12 @@ namespace OnlineExamApp
                 cfg.CreateMap<TrainerCreateVM, Trainer>();
                 cfg.CreateMap<Course,CourseEditVM>();
                 cfg.CreateMap<CourseEditVM,Course>();
+                cfg.CreateMap<CourseEditVM, CourseTrainer>();
+                cfg.CreateMap<CourseTrainer, CourseEditVM>();
                 cfg.CreateMap<CourseTrainerVM,CourseTrainer>();
                 cfg.CreateMap<CourseTrainer, CourseTrainerVM>();
+                cfg.CreateMap<CreateExamVM, Exam>();
+                cfg.CreateMap<Exam,CreateExamVM>();
                 //cfg.CreateMap<Trainer, TrainerCreateVM>();
 
 

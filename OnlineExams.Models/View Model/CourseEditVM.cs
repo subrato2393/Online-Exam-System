@@ -16,6 +16,7 @@ namespace OnlineExams.Models.View_Model
         public double Credit { get; set; }
         public string CourseOutLine { get; set; }
         public int OrganizationId { get; set; }
+        
         public ICollection<SelectListItem> OrganizationLookUps { get; set; }
         public ICollection<SelectListItem> TrainerLookUps { get; set; }
         public ICollection<SelectListItem> CourseLookUps { get; set; }

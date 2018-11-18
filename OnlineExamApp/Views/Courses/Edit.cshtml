@@ -145,7 +145,7 @@
                             <div class="form-group">
                                 @Html.Label("LeadTrainer", "Lead?", new { @class = "col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.RadioButton("LeadTrainer", "true", false)
+                                    @Html.RadioButton("LeadTrainer", new { @checked = false })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -154,6 +154,7 @@
                                 </div>
                             </div>
                             <div class="form-horizontal">
+
                                 <table class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -164,7 +165,10 @@
                                                 Lead Trainer?
                                             </th>
                                             <th>
-                                                Action
+                                                Action (Edit)
+                                            </th>
+                                            <th>
+                                                Action (Delete)
                                             </th>
                                         </tr>
 
@@ -180,41 +184,237 @@
                         }
                     </div>
                     <div class="tab-pane fade" id="tab3">
-                        @using (Ajax.BeginForm("Edit", "Courses", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "courseUpdateSuccess", OnFailure = "courseUpdateFail" }))
+                        @using (Ajax.BeginForm("CreateExam", "Courses", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "createExamSuccess", OnFailure = "createExamFail" }))
                         {
                             @Html.AntiForgeryToken()
-                        <div class="form-horizontal">
-                           
-                                    <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(model => model.Id)
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.OrganizationId, "Organization", htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("OrganizationId", Model.OrganizationLookUps, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.OrganizationId, "", new { @class = "text-danger" })
+                            <div class="form-horizontal">
+
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.OrganizationId, "Organization", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("OrganizationIds", Model.OrganizationLookUps, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.OrganizationId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("CourseId", Model.CourseLookUps, htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("ExamType", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.Editor("ExamType", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessage("ExamType", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("ExamCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.Editor("ExamCode", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessage("ExamCode", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Topic", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.Editor("Topic", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessage("Topic", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("FullMarks", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.Editor("FullMarks", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessage("FullMarks", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Duration", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.Editor("Duration", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessage("Duration", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-6 col-md-5">
+                                        <input type="button" id="createExam" value="Add >" class="btn btn-success" />
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <h3>Exam List</h3>
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Type
+                                                </th>
+                                                <th>
+                                                    Code
+                                                </th>
+                                                <th>
+                                                    Topic
+                                                </th>
+                                                <th>
+                                                    Full Marks
+                                                </th>
+                                                <th>
+                                                    Duration
+                                                </th>
+
+                                                <th>
+                                                    Action (View)
+                                                </th>
+                                                <th>
+                                                    Action (Edit)
+                                                </th>
+                                                <th>
+                                                    Action (Remove)
+                                                </th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="tbExam"></tbody>
+                                    </table>
+                                    @*<a><span class="glyphicon glyphicon-edit"></span></a>*@
+                                    @*<span class='glyphicon glyphicon-eye-open'></span>*@
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-11 col-md-5">
+                                        <input type="submit" value="Save" class="btn btn-default" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("CourseId", Model.CourseLookUps, htmlAttributes: new { @class = "form-control" })
-                                </div>
-                            </div>
-                           
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" id="courseUpdate" value="Save" class="btn btn-default" />
-                                </div>
-                            </div>
-                        </div>
                         }
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @*create a popup window for delete operation*@
+    <div class="modal fade" id="DeleteConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4>Delete  Record</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Are you Sure ? You want to delete This Record</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    @*Create a popup window for edit exam record*@
+
+    <div class="modal fade" id="EditConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @*<a href="~/Scripts/jquery-3.3.1.slim.min.map">~/Scripts/jquery-3.3.1.slim.min.map</a>*@
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4>Update  Record</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+
+
+                        <div class="form-group">
+                            @Html.Label("ExamType", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("ExamTypes", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("ExamType", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("ExamCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("ExamCodes", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("ExamCode", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Topic", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("Topics", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("Topic", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("FullMarks", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("FullMark", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("FullMarks", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Duration", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("Durations", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("Duration", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-danger" onclick="UpdateExamRecord()">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="EditTrainer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @*<a href="~/Scripts/jquery-3.3.1.slim.min.map">~/Scripts/jquery-3.3.1.slim.min.map</a>*@
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4>Update Student Record</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+
+
+                        <div class="form-group">
+                            @Html.Label("TrainerDropdown", "Trainer", new { @class = "col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("TrainerDropDown", Model.TrainerLookUps, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("LeadTrainer", "Lead?", new { @class = "col-md-2" })
+                            <div class="col-md-10">
+                                @Html.RadioButton("LeadTrainer", new { @checked = false })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+                    @*<a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 <div>
@@ -223,9 +423,11 @@
 
 @section Scripts {
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
+
     <script type="text/javascript">
         $(function () {
             $("#tabs").tabs();
@@ -243,17 +445,21 @@
 
             var tr = "<tr>";
 
-            var td = "<td><input name='Trainers[" + index + "].trainerid' type='hidden' value='" + trainer.TrainerId + "'>" + "<input name='Trainers[" + index + "].isLead' type='hidden' value='" + trainer.IsLead + "'>"+ "<input name='Trainers[" + index + "].courseid' type='hidden' value='" + trainer.CourseId + "'>" + "<input name='Trainers[" + index + "].Name' type='hidden' value='" + trainer.TrainerName + "'>" + trainer.TrainerName + "</td>"
-                
-            td += "<td><input type='radio'/></td>"
-            //td += "<td><input name='Trainers[" + index + "]' type='radio' value='" + trainer.IsLead + "'/>" + trainer.IsLead + "</td>"
-            td += "<td></td>"
+            var td = "<td><input name='Trainers[" + index + "].trainerid' type='hidden' value='" + trainer.TrainerId + "'>"   + "<input name='Trainers[" + index + "].courseid' type='hidden' value='" + trainer.CourseId + "'>" + "<input name='Trainers[" + index + "].Name' type='hidden' value='" + trainer.TrainerName + "'>" + trainer.TrainerName + "</td>"
+
+            //td += "<td><input name='Trainers[" + index + "]' type='radio'/></td>"
+
+            td += "<td><input name='Trainers[" + index + "].isLead' type='radio' value='" + trainer.IsLead + "' />" + trainer.IsLead + "</td>"
+            td += "<td><a href='#' class='btn btn-warning' onclick='EditTrainer(" + trainer.CourseId + ")'><span class='glyphicon glyphicon-edit'></span></a></td>"
+            td += "<td><a href = '#'  class='btn btn-danger' onclick='DeleteTrainer(" + trainer.CourseId + ")'> <span class='glyphicon glyphicon-trash'></a></td>"
+
+            //td += "<td></td>"
             tr += td + "</tr>";
 
-         
+
             $('#tbTrainer').append(tr);
             ++index;
-          
+
         })
 
         function getTrainer() {
@@ -273,6 +479,169 @@
 
             return trainer;
         }
+        //Create Exam Section on tab
+        //function getSelectedItem() {
+        //    var cell = $("#tbExam").children("tr").length; 
+        //    return cell;
+        //}
+    
+
+        var index = 0;
+        var i = 0;
+        $('#createExam').click(function () {
+            var exam = getExam();
+            //var tr = "<tr id=_row>";
+
+            var par = $(this).parent().parent(); //tr
+            var tdExamType = par.children("td:nth-child(1)");
+            var tdExamCode = par.children("td:nth-child(2)");
+            var tdExamTopic = par.children("td:nth-child(3)");
+            var tdFullMarks = par.children("td:nth-child(4)");
+            var tdDurations = par.children("td:nth-child(5)");
+            var tdView = par.children("td:nth-child(6)");
+            var tdEdit = par.children("td:nth-child(7)");
+            var tdDelete = par.children("td:nth-child(8)");
+
+            tdExamType = "<td ><input name='Exams[" + index + "].courseid'  type='hidden' value='" + exam.CourseId + "'>" + "<input name='Exams[" + index + "].examType' type='hidden' value='" + exam.ExamType + "'>" + exam.ExamType + "</td>"
+            tdExamCode = "<td ><input name='Exams[" + index + "].examCode'  type='hidden'  value='" + exam.ExamCode + "'>" + exam.ExamCode + "</td>"
+            tdExamTopic = "<td ><input name='Exams[" + index + "].topic'  type='hidden' value='" + exam.Topic + "'>" + exam.Topic + "</td>"
+            tdFullMarks = "<td ><input name='Exams[" + index + "].fullMarks'  type='hidden' value='" + exam.FullMarks + "'>" + exam.FullMarks + "</td>"
+            tdDurations = "<td ><input name='Exams[" + index + "].duration'  type='hidden' value='" + exam.Duration + "'>" + exam.Duration + "</td>"
+            tdView = "<td><a href='#' class='btn btn-success'> <span class='glyphicon glyphicon-eye-open'></span></a></td>"
+            tdEdit = "<td><a href ='#' class='btn btn-warning' onclick='EditExamRecord(" + i + ")'> <span class='glyphicon glyphicon-edit'></span></a ></td>"
+            tdDelete = "<td><a href='#' class='btn btn-danger' onclick='DeleteExamRecord()'><span class='glyphicon glyphicon-trash'></a></td >"
+            ++i;
+            var createrow = "<tr id='createRow'>" + tdExamType + tdExamCode + tdExamTopic + tdFullMarks + tdDurations + tdView + tdEdit + tdDelete+"</tr>"
+
+            
+            $('#tbExam').append(createrow);
+            var editexamrecord = EditExamsRecord();
+            $('#ExamType').val("");
+            $('#ExamCode').val("");
+            $('#Topic').val("");
+            $('#FullMarks').val("");
+            $('#Duration').val("");
+            ++index;
+        })
+  
+        function DeleteExamRecord(CourseId) {
+            $('#DeleteConfirmation').modal("show");
+        }
+        function ConfirmDelete() {
+            $('#DeleteConfirmation').modal("hide");
+            $('#createRow').remove();
+
+
+        }
+
+        //Create popup model for edit exam record
+        function EditExamsRecord() {
+    
+            var exam = getExam();
+            $("#ExamTypes").val(exam.ExamType);
+            $("#ExamCodes").val(exam.ExamCode);
+            $("#Topics").val(exam.Topic);
+            $("#FullMark").val(exam.FullMarks);
+            $("#Durations").val(exam.Duration);               
+        }
+        function EditExamRecord() {
+                $('#EditConfirmation').modal("show");          
+        }
+
+        function UpdateExamRecord() {
+            $.ajax({
+                type: "POST",
+                url: "/Courses/GetExamById",
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    $("#ExamType").val(obj.ExamType);
+                }
+            })
+        }
+
+        //Create popup model for edit trainer information
+        function DeleteTrainer(CourseId) {
+            $('#CourseId').val(CourseId);
+            $('#DeleteConfirmation').modal("show");
+        }
+
+        //create popup model for delete
+        function EditTrainer(CourseId) {
+            $('#EditTrainer').modal("show");
+
+        }
+
+        function getEditExam() {
+            var examType =$('#exmType').val();
+            var examCode =$('#exmcode').val();
+            var topic = $('#exmtopic').val();
+            var fullmarks = $('#fullmarks').val();
+            var duration = $('#duration').val();
+
+            var editexam = {
+                ExamType: examType,
+                ExamCode: examCode,
+                Topic: topic,
+                FullMarks: fullmarks,
+                Duration: duration
+            }
+            return editexam;
+        }
+
+        function getExam() {
+            var organizationId = $('#OrganizationIds').val();
+            var courseId = $('#CourseId').val();
+            var examType = $('#ExamType').val();
+            var examCode = $('#ExamCode').val();
+            var topic = $('#Topic').val();
+            var fullMarks = $('#FullMarks').val();
+            var duration = $('#Duration').val();
+
+            var exam = {
+                OrganizationId: organizationId,
+                CourseId: courseId,
+                ExamType: examType,
+                ExamCode: examCode,
+                Topic: topic,
+                FullMarks: fullMarks,
+                Duration: duration
+            }
+            return exam;
+        }
+
+        //create exam section ajax calling
+
+        $(document).ready(function () {
+            $('#OrganizationIds').change(function () {
+                var organizationid = $('#OrganizationIds').val();
+                var data = { organizationId: organizationid };
+                $.ajax({
+                    type: "POST",
+                    url: "/trainers/getCourse",
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (response) {
+                        var courseDropDown = $('#CourseId');
+                        courseDropDown.empty();
+                        var defaultOption = "<option value=''>....Select...</option>";
+                        courseDropDown.append(defaultOption);
+                        $.each(response, function (key, course) {
+                            var option = "<option value='" + course.Id + "'>" + course.Name + "</option>";
+                            courseDropDown.append(option);
+                        });
+                    },
+                    error: function (response) {
+                        alert("Error!");
+                    }
+                });
+
+            })
+
+
+            //2. get json response and bind data in trainee dropdown
+
+        });
+
         function courseUpdateSuccess() {
             alert("Course Update Successfully");
         }
@@ -285,6 +654,13 @@
         function courseAssignFail(){
             alert("Course Assign Fail");
         }
+        function createExamSuccess() {
+            alert("Create exam Successfully");
+        }
+        function createExamFail() {
+            alert("Create exam Fail");
+        }
+
 
     </script>
 }

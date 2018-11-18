@@ -27,6 +27,7 @@ namespace OnlineExamApp.Controllers
         //nazmulhyder : 01.11.18
         public ActionResult GetAllOrganization()
         {
+            db.Configuration.ProxyCreationEnabled = false;
             var organizationList = db.Organizations.ToList<Organization>();
             return Json(new {data = organizationList}, JsonRequestBehavior.AllowGet);
         }
