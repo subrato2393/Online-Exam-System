@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OnlineExams.Models
 {
@@ -17,6 +18,7 @@ namespace OnlineExams.Models
         public string Address { get; set; }
         [DisplayName("Contact")]
         public string ContactNo { get; set; }
+        [AllowHtml]
         public string About { get; set; }
         public string ImagePath { get; set; }
         [NotMapped]
