@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201809281914367_Change_ExamdurationType.Designer.cs">
       <DependentUpon>201809281914367_Change_ExamdurationType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811211320051_allowhtml added to about.cs" />
+    <Compile Include="Migrations\201811211320051_allowhtml added to about.Designer.cs">
+      <DependentUpon>201811211320051_allowhtml added to about.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineExamDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809281914367_Change_ExamdurationType.resx">
       <DependentUpon>201809281914367_Change_ExamdurationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811211320051_allowhtml added to about.resx">
+      <DependentUpon>201811211320051_allowhtml added to about.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
