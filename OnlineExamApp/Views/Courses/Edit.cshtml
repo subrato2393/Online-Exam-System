@@ -253,6 +253,7 @@
                                         @Html.ValidationMessage("SerialNo", "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="col-md-offset-6 col-md-5">
                                         <input type="button" id="createExam" value="Add >" class="btn btn-success" />
@@ -444,46 +445,29 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-
-
-                        @*<div class="form-group">
-                            @Html.Label("ExamType", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@*@*@Html.Editor("ExamTypes", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessage("ExamType", "", new { @class = "text-danger" })*@*@*@
-                            
-                            @*</div>
-                        </div>*@*
-
                         <div class="form-group">
-                            @Html.Label("ExamType", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                               
-                                <label id="ExamTypeLabel"></label>
+                                Exam Type : <label id="ExamTypeLabel"></label>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            @Html.Label("Topic", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.Editor("Topics", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessage("Topic", "", new { @class = "text-danger" })
+                                Exam Code : <label id="ExamCodeLabel"></label>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            @Html.Label("FullMarks", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.Editor("FullMark", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessage("FullMarks", "", new { @class = "text-danger" })
+                                Full Marks : <label id="FullMarksLabel"></label>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            @Html.Label("Duration", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.Editor("Durations", new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessage("Duration", "", new { @class = "text-danger" })
+                                Duration : <label id="DurationLabel"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                Serial No : <label id="SerialNoLabel"></label>
                             </div>
                         </div>
                     </div>
@@ -571,6 +555,7 @@
         $('#createExam').click(function () {
             //++slNo;
             var exam = getExam();
+            
             var par = $(this).parent().parent(); //tr
              var slNo = par.children("td:nth-child(1)");
             var tdExamType = par.children("td:nth-child(2)");
@@ -579,32 +564,39 @@
             var tdFullMarks = par.children("td:nth-child(5)");
             var tdDurations = par.children("td:nth-child(6)");
             var action = par.children("td:nth-child(7)");
-            //var tdView = par.children("td:nth-child(6)");
-            //var tdEdit = par.children("td:nth-child(7)");
-            //var tdDelete = par.children("td:nth-child(8)");
-            slNo = "<td ><input type='hidden'  value='" + exam.SerialNo + "'>" + exam.SerialNo + "</td>"
-            tdExamType = "<td ><input name='Exams[" + index + "].courseid'  type='hidden' value='" + exam.CourseId + "'>" + "<input name='Exams[" + index + "].examType'  id='exmtype' type='hidden' value='" + exam.ExamType + "'>" + exam.ExamType + "</td>"
-            tdExamCode = "<td ><input name='Exams[" + index + "].examCode'  type='hidden'  value='" + exam.ExamCode + "'>" + exam.ExamCode + "</td>"
-            tdExamTopic = "<td ><input name='Exams[" + index + "].topic'  type='hidden' value='" + exam.Topic + "'>" + exam.Topic + "</td>"
-            tdFullMarks = "<td ><input name='Exams[" + index + "].fullMarks'  type='hidden' value='" + exam.FullMarks + "'>" + exam.FullMarks + "</td>"
-            tdDurations = "<td ><input name='Exams[" + index + "].duration'  type='hidden' value='" + exam.Duration + "'>" + exam.Duration + "</td>"
-            action = "<td><button type='button' id='viewbtn' class='btn btn-success btn-xs'><span class='glyphicon glyphicon-eye-open'></span></button>   |     <button type='button' id='btn' class='btn btn-warning btn-xs'><span class='glyphicon glyphicon-edit'></span></button>      |     <button type='button' id='deletebtn' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button> </td>"
-            //tdView = "<td><a href='#' class='btn btn-success'> <span class='glyphicon glyphicon-eye-open'></span></a></td>"
-            //tdEdit = "<td><button type='button' id='btn' class='btn btn-warning'><span class='glyphicon glyphicon-edit'></span></button></td>"
-            //tdDelete = "<td><a href='#' class='btn btn-danger' onclick='DeleteExamRecord()'><span class='glyphicon glyphicon-trash'></a></td >"
-            var createrow = "<tr id='createRow'>" + slNo + tdExamType + tdExamCode + tdExamTopic + tdFullMarks + tdDurations + action + "</tr>"
+      
+                slNo = "<td ><input type='hidden'  value='" + exam.SerialNo + "'>" + exam.SerialNo + "</td>"
+                tdExamType = "<td ><input name='Exams[" + index + "].courseid'  type='hidden' value='" + exam.CourseId + "'>" + "<input name='Exams[" + index + "].examType'  id='exmtype' type='hidden' value='" + exam.ExamType + "'>" + exam.ExamType + "</td>"
+                tdExamCode = "<td ><input name='Exams[" + index + "].examCode'  type='hidden'  value='" + exam.ExamCode + "'>" + exam.ExamCode + "</td>"
+                tdExamTopic = "<td ><input name='Exams[" + index + "].topic'  type='hidden' value='" + exam.Topic + "'>" + exam.Topic + "</td>"
+                tdFullMarks = "<td ><input name='Exams[" + index + "].fullMarks'  type='hidden' value='" + exam.FullMarks + "'>" + exam.FullMarks + "</td>"
+                tdDurations = "<td ><input name='Exams[" + index + "].duration'  type='hidden' value='" + exam.Duration + "'>" + exam.Duration + "</td>"
+                action = "<td><button type='button' id='viewbtn' class='btn btn-success btn-xs'><span class='glyphicon glyphicon-eye-open'></span></button>   |     <button type='button' id='btn' class='btn btn-warning btn-xs'><span class='glyphicon glyphicon-edit'></span></button>      |     <button type='button' id='deletebtn' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button> </td>"
 
-            
-            $('#tbExam').append(createrow);
-            //var editexamrecord = EditExamsRecord();
-          
-            $('#ExamType').val("");
-            $('#ExamCode').val("");
-            $('#Topic').val("");
-            $('#FullMarks').val("");
-            $('#Duration').val("");
-            $('#SerialNo').val("");
-            ++index;
+           
+                var createrow = "<tr id='createRow'>" + slNo + tdExamType + tdExamCode + tdExamTopic + tdFullMarks + tdDurations + action + "</tr>"
+
+            var exmtype = $('#ExamType').val().trim();
+            var exmcode = $('#ExamCode').val().trim();
+            var exmtopic = $('#Topic').val().trim();
+            var marks = $('#FullMarks').val().trim();
+            var slno = $('#SerialNo').val().trim();
+            var duration = $('#Duration').val().trim();
+            if (exmtype.length == 0 || exmcode.length == 0 || exmtopic.length == 0 || marks.length == 0 || slno.length == 0 || duration.length==0) {
+                swal({
+                    text: "Please provide all necessary information !",                   
+                })
+            }
+            else {
+                $('#tbExam').append(createrow);
+                $('#ExamType').val("");
+                $('#ExamCode').val("");
+                $('#Topic').val("");
+                $('#FullMarks').val("");
+                $('#Duration').val("");
+                $('#SerialNo').val("");
+                ++index;
+            }
         })
 
       
@@ -663,6 +655,7 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         currrow.remove();
+                        swal("Success!", "Delete Successfully", "success");
                     }
                 });
            
@@ -687,13 +680,18 @@
         $('#tbExam').on('click', '#viewbtn', function () {
             currrow = $(this).closest('tr');
             $('#ViewExam').modal("show");
-          
+            var slNo = currrow.find('td:eq(0)').text();
             var examType = currrow.find('td:eq(1)').text();
             var examCode = currrow.find('td:eq(2)').text();
             var topics = currrow.find('td:eq(3)').text();
             var fullMarks = currrow.find('td:eq(4)').text();
             var duration = currrow.find('td:eq(5)').text();
-            $('#ExamTypeLabel').val(examType);
+            $("#ExamTypeLabel").html(examType);
+            $("#ExamCodeLabel").html(examCode);
+            $("#ExamTopicLabel").html(topics);
+            $("#FullMarksLabel").html(fullMarks);
+            $("#DurationLabel").html(duration);
+            $("#SerialNoLabel").html(slNo);
         })
        
 
