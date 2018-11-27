@@ -1,0 +1,1 @@
+Online Examination System is a software solution, which allows any organization  to arrange, conduct and manage MCQ examinations via an online environment. Trainer /Examinar  of specific  organization will be able to set question  paper and participants of specific  course and  batch can participate exam
