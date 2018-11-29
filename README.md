@@ -4,7 +4,7 @@ Online Exam Management System
 Online Exam Management System,Which is fully education based project,In modern world online education course is a very popular system to all over the world. Any kind of educational organization could able to registed of our site, They can have to take all the educational activities with this site, as well as it also helpful for student,who want to take any course through the online,It also has same speacial advantage,Students can see the trainer's history,review and as well as course rating.There are three of four kind of exams in all course,student should be attend to all these exams,And exams taken with MCQ system.
 ### Technology Used
 ```
-Programming Language :C#,ASP.NET MVC
+C#,ASP.NET MVC,Code-first migration,Entity Framework,MS SQL Server 2012,HTML5,CSS3,JavaScript,JQuery
 ```
 ### [Project Mockups]
 #### [01- Organization Entry]
@@ -25,7 +25,7 @@ Programming Language :C#,ASP.NET MVC
 ![08 batch entry](https://user-images.githubusercontent.com/24517327/49200960-25071f80-f3c9-11e8-8d64-ce43fcbfbb22.png)
 #### [09-Batch Edit]
 ![09 batch edit](https://user-images.githubusercontent.com/24517327/49200965-28021000-f3c9-11e8-9c69-dc6e0fd3da1d.png)
-#### 10- Participation Entry]
+#### 10- Participant Entry]
 ![10 participant entry](https://user-images.githubusercontent.com/24517327/49200971-2d5f5a80-f3c9-11e8-8a10-21cefe1d354d.png)
 #### [11- Trainer Entry]
 ![11 trainer entry](https://user-images.githubusercontent.com/24517327/49200976-30f2e180-f3c9-11e8-99b1-9afe4f9a10c0.png)
