@@ -158,12 +158,7 @@ namespace OnlineExamApp.Controllers
             }
             return View(organizations);
         }
-        //    public JsonResult GetOrganizationCode(string org_code)
-        //    //{
-        //        var orgCode = db.Organizations.Select(c => c.Org_Code);
-        //        return Json(orgCode, JsonRequestBehavior.AllowGet);
-        //}
-        // GET: Organizations/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -196,7 +191,21 @@ namespace OnlineExamApp.Controllers
             }
             return Json(status);
         }
+        public ActionResult InformationDetails(int? Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            Organization organization = db.Organizations.Find(Id);
+            if (organization == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(organization);
+        }
 
 
         // GET: Organizations/Delete/5

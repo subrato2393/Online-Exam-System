@@ -19,6 +19,7 @@
             <th>@Html.DisplayNameFor(model => model.Address)</th>
             <th>@Html.DisplayNameFor(model => model.ContactNo)</th>
             <th class="text-center">@Html.DisplayNameFor(model => model.About)</th>
+            <th class="text-center">Logo</th>
             <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -106,7 +107,7 @@
                     </div>
                     <div class="form-group">
                         <label for="About">About</label>
-                        <input name="About" class="form-control" placeholder="About" type="text" id="About" />
+                        <textarea name="About" class="form-control" placeholder="About" type="text" id="About" ></textarea>
                     </div>
                 </form>
             </div>
@@ -146,18 +147,18 @@
                     { "data": "ContactNo", "name": "ContactNo", "autoWidth": true },
                     { "data": "About", "name": "About", "autoWidth": true },
                     {
+                        "render": function (data, type, JsonResultRow, meta) {
+                            return '<img src="' + JsonResultRow.ImagePath + '" style="width:50px;height:50px;">';
+                        }
+
+                    },
+                    {
                         "data": "Id",
                         "render": function(data) {
-                            return '<a href="/Organizations/Details/'+data+'">View</a>';
+                            return '<a href="/Organizations/InformationDetails/'+data+'">View</a>';
                         }
                     },
-                    @*{
-                        "mRender": function(data, type, full) {
-                            return '<a href='+
-                                '@Url.Action("Details", "Organizations")'+data +
-                                '>View</a>';
-                        }
-                    },*@
+                   
                     {
                         "data": "Id",
                         "render": function(data) {

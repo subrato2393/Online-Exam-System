@@ -4,13 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Organization</h4>
+        <h2>Create Organization</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -75,51 +75,11 @@
 
     <script src="~/Scripts/tinymce/tinymce.js"></script>
     <script src="~/Scripts/main.js"></script>
-    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/themes/base/autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet"/>
+    <link href="~/Content/themes/base/autocomplete.css" rel="stylesheet"/>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-
-    @*<script type="text/javascript">
-        $(document).ready(function () {
-            //1. on course dropdown chage ->
-            $('#Org_Code').click(function () {
-                //request for Course/GetTraineeBy?courseid=courseDD value
-                var code = $('#Org_Code').text();
-                var data = {org_code:code};
-                $.ajax({
-                    type: "POST",
-                    url: "/organizations/getOrganizationCode",
-                    data: JSON.stringify(data),
-                    contentType: "application/json",
-                    success: function (response) {
-                        //var traineeDropDown = $('#Trainee');
-                        //traineeDropDown.empty();
-                        //var defaultOption = "<option value=''>Select...</option>";
-                        //traineeDropDown.append(defaultOption);
-
-                        //$.each(response, function (key, trainee) {
-                        //    var option = "<option value='" + trainee.Id + "'>" + trainee.Name + "</option>";
-                        //    traineeDropDown.append(option);
-                        //});
-                        response;
-
-                    },
-                    error: function (response) {
-                        alert("Error!");
-                    }
-                @*@@*});*@
-
-                @*})
-
-
-                            //2. get json response and bind data in trainee dropdown
-
-                        });
-
-
-                    </script>*@
-
 }
+   

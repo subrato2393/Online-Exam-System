@@ -1,0 +1,108 @@
+﻿@model OnlineExams.Models.Organization
+
+@{
+    ViewBag.Title = "InformationDetails";
+}
+
+<h2>Organization Information</h2>
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p style="margin-top: 10px; padding-bottom: 20px;"><img src="@Url.Content(Model.ImagePath)" width="200" height="180" multiple /></p>
+
+            </div>
+            <div class="col-md-6" style="padding-top: 50px;">
+                
+                    <h1 class="text-center">@Html.DisplayFor(model => model.Org_Name)</h1>
+                    <p class="text-center">@Html.DisplayFor(model => model.About)</p>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="org_info_table" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Code</th>
+                                <th>About</th>
+                                <th>Trainer</th>
+                                <th>Participant</th>
+                                <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var check in Model.Courses)
+                            {
+                                <tr>
+                                    <td>@check.Name</td>
+                                    <td>@check.CourseCode</td>
+                                    <td>@check.CourseOutLine</td>
+                                    <td class="text-center">@Model.Trainers.Count</td>
+                                    <td>under construction!</td>
+                                    <td>under construction!</td>
+                                    <td>under construction!</td>
+                                    <td>under construction!</td>
+
+
+                                </tr>
+
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <dd>
+                        <h3 class="text-center">ADDRESS:</h3>
+                        <p class="text-center">@Html.DisplayFor(model => model.Address)</p>
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <dd class="text-center">
+
+                        <i><h4>Contact:</h4>@Html.DisplayFor(model => model.ContactNo)</i>
+                    </dd>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.ActionLink("Index", "SearchOrganization")
+</body>
+</html>
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    @*<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            $('#org_info_table').DataTable();
+        });
+
+
+    </script>
+
+}
+
+
