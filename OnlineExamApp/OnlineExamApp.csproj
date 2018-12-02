@@ -236,6 +236,8 @@
     <Content Include="Scripts\ckeditor\ckeditor.asp" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
+    <Content Include="Scripts\durationpicker\LICENSE" />
+    <Content Include="Scripts\durationpicker\README.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
@@ -580,6 +582,11 @@
     <Content Include="Scripts\ckeditor\skins\v2\skin.js" />
     <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
+    <Content Include="Scripts\durationpicker\duration-picker.css" />
+    <Content Include="Scripts\durationpicker\duration-picker.js" />
+    <Content Include="Scripts\durationpicker\duration-picker.min.css" />
+    <Content Include="Scripts\durationpicker\duration-picker.min.js" />
+    <Content Include="Scripts\durationpicker\index.html" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

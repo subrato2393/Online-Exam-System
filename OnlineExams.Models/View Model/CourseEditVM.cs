@@ -12,7 +12,7 @@ namespace OnlineExams.Models.View_Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string CourseCode { get; set; }
-        public DateTime CourseDuration { get; set; }
+        public string CourseDuration { get; set; }
         public double Credit { get; set; }
         public string CourseOutLine { get; set; }
         public int OrganizationId { get; set; }
