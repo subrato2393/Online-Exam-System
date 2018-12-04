@@ -10,7 +10,10 @@
     <title>Online Exam</title>
 
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    @*<script src="~/Scripts/Jquery durationpicker/duration-picker.js"></script>*@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
@@ -152,7 +155,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-6 col-md-5">
-                                    <input type="button" id="addTrainerButton" value="Add >" class="btn btn-default" />
+                                    <input type="button" id="addTrainerButton" value="Add >" class="btn btn-success" />
                                 </div>
                             </div>
                             <div class="form-horizontal">
@@ -167,10 +170,7 @@
                                                 Lead Trainer?
                                             </th>
                                             <th>
-                                                Action (Edit)
-                                            </th>
-                                            <th>
-                                                Action (Delete)
+                                                Action
                                             </th>
                                         </tr>
 
@@ -180,7 +180,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-11 col-md-5">
-                                    <input type="submit" value="Assign" class="btn btn-default" />
+                                    <input type="submit" value="Assign" class="btn btn-primary" />
                                 </div>
                             </div>
                         }
@@ -242,7 +242,9 @@
                                 <div class="form-group">
                                     @Html.Label("Duration", htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.Editor("Duration", new { htmlAttributes = new { @class = "form-control" } })
+                                        @*<input type="text" id="Duration" name="duration">*@
+                                        @Html.Editor("Duration",null, new { htmlAttributes = new { @class = "form-control" } })
+                                      
                                         @Html.ValidationMessage("Duration", "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -320,25 +322,7 @@
             </div>
         </div>
     </div>
-    @*create a popup window for delete operation*@
-    @*<div class="modal fade" id="DeleteConfirmation">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a href="#" class="close" data-dismiss="modal">&times;</a>
-                        <h4>Delete  Record</h4>
-                    </div>
-                    <div class="modal-body">
-                        <h4>Are you Sure ? You want to delete This Record</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
-                        <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-
+  
     @*Create a popup window for edit exam record*@
 
     <div class="modal fade" id="EditConfirmation">
@@ -401,6 +385,8 @@
             </div>
         </div>
     </div>
+
+    @*Create a popup window for edit exam record*@
     <div class="modal fade" id="EditTrainer">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -416,13 +402,13 @@
                         <div class="form-group">
                             @Html.Label("TrainerDropdown", "Trainer", new { @class = "col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownList("TrainerDropDown", Model.TrainerLookUps, new { @class = "form-control" })
+                                @Html.DropDownList("TrainerDropDowns", Model.TrainerLookUps, new {@class = "form-control", @disabled = "disabled" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.Label("LeadTrainer", "Lead?", new { @class = "col-md-2" })
                             <div class="col-md-10">
-                                @Html.RadioButton("LeadTrainer", new { @checked = false })
+                                @Html.RadioButton("LeadTrainers",new { @checked = false})
                             </div>
 
                         </div>
@@ -430,7 +416,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
-                    @*<a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>*@
+                    <button type='button' id='updateTrainerButton' class='btn btn-success'>Update</button>
                 </div>
             </div>
         </div>
@@ -474,7 +460,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
-                  
+
                 </div>
             </div>
         </div>
@@ -486,13 +472,22 @@
 </div>
 
 @section Scripts {
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+    @*<link href="~/Scripts/durationpicker/duration-picker.css" rel="stylesheet" />*@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    @*<script src="~/Scripts/durationpicker/duration-picker.js"></script>*@
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
 
+
+
     <script type="text/javascript">
+
+        //Exam Duration
+     
         $(function () {
             $("#tabs").tabs();
         });
@@ -502,35 +497,77 @@
             $('#courseName').empty();
             $('#courseName').append(courseNames);
         });
+
+        //Radio Button Checked or Unchecked for add trainer
+        $(function () {
+            $('input[name="LeadTrainer"]').click(function () {
+                var $radio = $(this);
+
+                // if this was previously checked
+                if ($radio.data('waschecked') == true) {
+                    $radio.prop('checked', false);
+                    $radio.data('waschecked', false);
+                }
+                else
+                    $radio.data('waschecked', true);
+            });
+        });
+        $(function () {
+            $('input[name="LeadTrainers"]').click(function () {
+                var $radio = $(this);
+
+                // if this was previously checked
+                if ($radio.data('waschecked') == true) {
+                    $radio.prop('checked', false);
+                    $radio.data('waschecked', false);
+                }
+                else
+                    $radio.data('waschecked', true);
+            });
+        });
         //Assign trainer
         var index = 0;
         $('#addTrainerButton').click(function () {
+           
             var trainer = getTrainer();
+            var par = $(this).parent().parent(); //tr
+            var tdTrainerName = par.children("td:nth-child(0)");
+            var tdIsLead = par.children("td:nth-child(1)");
+            var action = par.children("td:nth-child(2)");
 
-            var tr = "<tr>";
+           
 
-            var td = "<td><input name='Trainers[" + index + "].trainerid' type='hidden' value='" + trainer.TrainerId + "'>"   + "<input name='Trainers[" + index + "].courseid' type='hidden' value='" + trainer.CourseId + "'>" + "<input name='Trainers[" + index + "].Name' type='hidden' value='" + trainer.TrainerName + "'>" + trainer.TrainerName + "</td>"
+            tdTrainerName = "<td><input name='Trainers[" + index + "].trainerid' type='hidden' value='" + trainer.TrainerId + "'>" + "<input name='Trainers[" + index + "].courseid' type='hidden' value='" + trainer.CourseId + "'>" + "<input name='Trainers[" + index + "].Name' type='hidden' value='" + trainer.TrainerName + "'>" + trainer.TrainerName + "</td>"
+            if (trainer.IsLead == true) {
+                tdIsLead = "<td><input name='Trainers[" + index + "].isLead' id='radio' type='radio' value='" + trainer.IsLead + "' disabled checked/>" + '' + "</td>"
+               
+            }
+            else {
+                tdIsLead = "<td><input name='Trainers[" + index + "].isLead' id='radio' type='radio' value='" + trainer.IsLead + "' disabled />" + '' + "</td>"
+            }
+           
+           action= "<td><button type='button' id='edittrainerbtn' class='btn btn-warning btn-xs'><span class='glyphicon glyphicon-edit'></span></button>      |     <button type='button' id='deletetrainerbtn' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button> </td>"
+            
 
-            //td += "<td><input name='Trainers[" + index + "]' type='radio'/></td>"
-
-            td += "<td><input name='Trainers[" + index + "].isLead' type='radio' value='" + trainer.IsLead + "' />" + trainer.IsLead + "</td>"
-            td += "<td><a href='#' class='btn btn-warning' onclick='EditTrainer(" + trainer.CourseId + ")'><span class='glyphicon glyphicon-edit'></span></a></td>"
-            td += "<td><a href = '#'  class='btn btn-danger' onclick='DeleteTrainer(" + trainer.CourseId + ")'> <span class='glyphicon glyphicon-trash'></a></td>"
-
-            //td += "<td></td>"
-            tr += td + "</tr>";
-
-
-            $('#tbTrainer').append(tr);
+            var createrow = "<tr>" + tdTrainerName + tdIsLead + action + "</tr>"
+            $('#tbTrainer').append(createrow);
+          
             ++index;
-
+         
         })
 
         function getTrainer() {
 
             var trainerId = $('#TrainerDropDown').val();
             var trainerName = $('#TrainerDropDown :selected').text();
+            //var isLead = $('input[name=LeadTrainer]:checked').val();
+
             var isLead = $('#LeadTrainer').is(':checked');
+            //var isLead = $("input[name='LeadTrainer']:checked").text();
+            //var isLead = $("input:radio[name='LeadTrainer']").is(":checked");
+            //var isLead = $('#LeadTrainer:checked').val() ? true : false;
+
+
             var courseId=@Model.Id;
 
             var trainer = {
@@ -543,28 +580,22 @@
 
             return trainer;
         }
-        //Create Exam Section on tab
-        //function getSelectedItem() {
-        //    var cell = $("#tbExam").children("tr").length; 
-        //    return cell;
-        //}
-    
-
+       
         var index = 0;
         //var slNo = 0;
         $('#createExam').click(function () {
             //++slNo;
             var exam = getExam();
-            
+
             var par = $(this).parent().parent(); //tr
-             var slNo = par.children("td:nth-child(1)");
+            var slNo = par.children("td:nth-child(1)");
             var tdExamType = par.children("td:nth-child(2)");
             var tdExamCode = par.children("td:nth-child(3)");
             var tdExamTopic = par.children("td:nth-child(4)");
             var tdFullMarks = par.children("td:nth-child(5)");
             var tdDurations = par.children("td:nth-child(6)");
             var action = par.children("td:nth-child(7)");
-      
+
                 slNo = "<td ><input type='hidden'  value='" + exam.SerialNo + "'>" + exam.SerialNo + "</td>"
                 tdExamType = "<td ><input name='Exams[" + index + "].courseid'  type='hidden' value='" + exam.CourseId + "'>" + "<input name='Exams[" + index + "].examType'  id='exmtype' type='hidden' value='" + exam.ExamType + "'>" + exam.ExamType + "</td>"
                 tdExamCode = "<td ><input name='Exams[" + index + "].examCode'  type='hidden'  value='" + exam.ExamCode + "'>" + exam.ExamCode + "</td>"
@@ -573,7 +604,7 @@
                 tdDurations = "<td ><input name='Exams[" + index + "].duration'  type='hidden' value='" + exam.Duration + "'>" + exam.Duration + "</td>"
                 action = "<td><button type='button' id='viewbtn' class='btn btn-success btn-xs'><span class='glyphicon glyphicon-eye-open'></span></button>   |     <button type='button' id='btn' class='btn btn-warning btn-xs'><span class='glyphicon glyphicon-edit'></span></button>      |     <button type='button' id='deletebtn' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button> </td>"
 
-           
+
                 var createrow = "<tr id='createRow'>" + slNo + tdExamType + tdExamCode + tdExamTopic + tdFullMarks + tdDurations + action + "</tr>"
 
             var exmtype = $('#ExamType').val().trim();
@@ -584,7 +615,7 @@
             var duration = $('#Duration').val().trim();
             if (exmtype.length == 0 || exmcode.length == 0 || exmtopic.length == 0 || marks.length == 0 || slno.length == 0 || duration.length==0) {
                 swal({
-                    text: "Please provide all necessary information !",                   
+                    text: "Please provide all necessary information !",
                 })
             }
             else {
@@ -599,12 +630,12 @@
             }
         })
 
-      
+
          //Create popup model for edit exam record
         var currrow = null;
         $('#tbExam').on('click', '#btn', function () {
             currrow = $(this).closest('tr');
-          
+
             var examType = currrow.find('td:eq(1)').text();
             var examCode = currrow.find('td:eq(2)').text();
             var topics = currrow.find('td:eq(3)').text();
@@ -614,18 +645,39 @@
             $("#ExamCodes").val(examCode);
             $("#Topics").val(topics);
             $("#FullMark").val(fullMarks);
-            $("#Durations").val(duration);     
+            $("#Durations").val(duration);
             $('#EditConfirmation').modal("show");
-  
-        })
 
-        // Create a modal popup for update
+        })
+        //if (!$('#tbTrainer input[value=""]').length) {
+            // do something
+        //}
+        $('#tbTrainer').on('click', '#edittrainerbtn', function () {
+            var trainer = getTrainer();
+           
+            currrow = $(this).closest('tr');
+            var trainername = currrow.find('td:eq(0)').text();
+            var islead = currrow.find('td:eq(1)').text();
+          
+            //if (trainer.IsLead == true) {
+
+            //}
+            //for modal dropdownlist empty
+            var option = $('<option></option>').attr("value", "option value").text(trainername);
+            $("#TrainerDropDowns").empty().append(option);
+
+            $('#TrainerDropDowns :selected').text(trainername); 
+            $("input[name='LeadTrainers']:checked").val(islead)
+            $('#EditTrainer').modal("show");
+           
+        });
+        // Create a modal popup for update exam
         $('#updateButton').click(function () {
 
             $('#EditConfirmation').modal("hide");
 
             if (currrow)
-            {             
+            {
                 var examType = $("#ExamTypes").val();
                 var examCode  = $("#ExamCodes").val();
                 var topics = $("#Topics").val();
@@ -638,11 +690,25 @@
                 currrow.find('td:eq(4)').text(fullMarks);
                 currrow.find('td:eq(5)').text(duration);
                 swal("Success!", "Update Successfully", "success");
-               
+
+            }
+        })
+        $('#updateTrainerButton').click(function () {
+
+            $('#EditTrainer').modal("hide");
+
+            if (currrow) {
+                var trainername = $("#TrainerDropdowns").val();
+                var islead = $("#LeadTrainers").text();
+
+                currrow.find('td:eq(0)').text(trainername);
+                currrow.find('td:eq(1)').text(islead);
+                swal("Success!", "Update Successfully", "success");
+
             }
         })
 
-        //Create a Mpdal popup for Delete
+        //Create a Modal popup for Delete Exam Record
         $('#tbExam').on('click', '#deletebtn', function () {
             currrow = $(this).closest('tr');
             swal({
@@ -658,25 +724,29 @@
                         swal("Success!", "Delete Successfully", "success");
                     }
                 });
-           
+
+        })
+        //Create a Modal popup for Delete assign trainer Record
+        $('#tbTrainer').on('click', '#deletetrainerbtn', function () {
+            currrow = $(this).closest('tr');
+            swal({
+                title: "Are you sure?",
+                text: "You want to Delete this row!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        currrow.remove();
+                        swal("Success!", "Delete Successfully", "success");
+                    }
+                });
+
         })
 
-        //function DeleteExamRecord() {
-        //    swal({
-        //        title: "Are you sure?",
-        //        text: "You want to Delete this row!",
-        //        icon: "warning",
-        //        buttons: true,
-        //        dangerMode: true,
-        //    })
-        //        .then((willDelete) => {
-        //            if (willDelete) {
-                       
-        //            }
-        //        });
-        //}
 
-        //Create a popup for View 
+        //Create a popup for View
         $('#tbExam').on('click', '#viewbtn', function () {
             currrow = $(this).closest('tr');
             $('#ViewExam').modal("show");
@@ -693,7 +763,7 @@
             $("#DurationLabel").html(duration);
             $("#SerialNoLabel").html(slNo);
         })
-       
+
 
         //Create popup model for edit trainer information
         function DeleteTrainer(CourseId) {
@@ -702,10 +772,10 @@
         }
 
         //create popup model for delete
-        function EditTrainer(CourseId) {
-            $('#EditTrainer').modal("show");
+        //function EditTrainer(CourseId) {
+        //    $('#EditTrainer').modal("show");
 
-        }
+        //}
 
 
         function getExam() {

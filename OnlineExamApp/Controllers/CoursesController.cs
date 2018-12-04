@@ -54,7 +54,7 @@ namespace OnlineExamApp.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CourseCode,CourseDuration,Credit,CourseOutLine,OrganizationId")] Course course)
+        public ActionResult Create([Bind(Include = "Id,Name,CourseCode,CourseDuration,Credit,CourseOutLine,CourseTag,OrganizationId")] Course course)
         {
             if (ModelState.IsValid)
             {

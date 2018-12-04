@@ -67,6 +67,14 @@
     <Compile Include="Migrations\201811211320051_allowhtml added to about.Designer.cs">
       <DependentUpon>201811211320051_allowhtml added to about.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812021732288_add_CourseTag.cs" />
+    <Compile Include="Migrations\201812021732288_add_CourseTag.Designer.cs">
+      <DependentUpon>201812021732288_add_CourseTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812021741007_Change_the_Type_CourseTag.cs" />
+    <Compile Include="Migrations\201812021741007_Change_the_Type_CourseTag.Designer.cs">
+      <DependentUpon>201812021741007_Change_the_Type_CourseTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineExamDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811211320051_allowhtml added to about.resx">
       <DependentUpon>201811211320051_allowhtml added to about.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812021732288_add_CourseTag.resx">
+      <DependentUpon>201812021732288_add_CourseTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812021741007_Change_the_Type_CourseTag.resx">
+      <DependentUpon>201812021741007_Change_the_Type_CourseTag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

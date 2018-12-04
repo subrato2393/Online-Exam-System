@@ -15,10 +15,10 @@ namespace OnlineExams.DataContext
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
-        public DbSet<Tag> Tags { get; set; }
+       
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Participant> Participants { get; set; }
-        public DbSet<CourseTag> CourseTags { get; set; }
+        
         public DbSet<CourseTrainer> CourseTrainers { get; set; }
         public DbSet<ExamSchedule> ExamSchedules { get; set; }
 
