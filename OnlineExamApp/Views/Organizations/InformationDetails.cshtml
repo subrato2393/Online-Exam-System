@@ -1,18 +1,17 @@
-﻿@model OnlineExams.Models.Organization
+﻿
+@model OnlineExams.Models.Organization
 
 @{
-    ViewBag.Title = "InformationDetails";
+    /**/
+    ViewBag.Title = "Details";
+
 }
 
-<h2>Organization Information</h2>
 <!DOCTYPE html>
 <html>
 <head>
-
-    <link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
 </head>
 
 <body>
@@ -21,14 +20,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <p style="margin-top: 10px; padding-bottom: 20px;"><img src="@Url.Content(Model.ImagePath)" width="200" height="180" multiple /></p>
+                @*@Model.Logo*@
+                <p style="margin-top: 5px; padding-bottom: 10px;"><img src="@Url.Content(Model.ImagePath)" width="200" height="180" multiple /></p>
 
             </div>
             <div class="col-md-6" style="padding-top: 50px;">
-                
-                    <h1 class="text-center">@Html.DisplayFor(model => model.Org_Name)</h1>
-                    <p class="text-center">@Html.DisplayFor(model => model.About)</p>
-                
+                @*@Model.About*@
+
+
+                <h1 class="text-center">@Html.DisplayFor(model => model.Org_Name)</h1>
+                <p class="text-center">@Html.DisplayFor(model => model.About)</p>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -70,20 +72,22 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <dd>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
                         <h3 class="text-center">ADDRESS:</h3>
                         <p class="text-center">@Html.DisplayFor(model => model.Address)</p>
-                    </dd>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <dd class="text-center">
 
-                        <i><h4>Contact:</h4>@Html.DisplayFor(model => model.ContactNo)</i>
-                    </dd>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center">Contact:</h3>
+                        <p class="text-center">@Html.DisplayFor(model => model.ContactNo)</p>
+
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,9 +96,10 @@
 </body>
 </html>
 @section scripts{
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    @*<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+    <script src=" https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#org_info_table').DataTable();
@@ -104,5 +109,3 @@
     </script>
 
 }
-
-

@@ -4,6 +4,8 @@
     ViewBag.Title = "SearchOrganization";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <h3>Search Organization</h3>
@@ -18,8 +20,8 @@
             <th>@Html.DisplayNameFor(model => model.Org_Code)</th>
             <th>@Html.DisplayNameFor(model => model.Address)</th>
             <th>@Html.DisplayNameFor(model => model.ContactNo)</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.About)</th>
-            <th class="text-center">Logo</th>
+            <th>@Html.DisplayNameFor(model => model.About)</th>
+            <th>@Html.DisplayNameFor(model => model.Logo)</th>
             <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -40,7 +42,7 @@
             </div>
 
             <div class="modal-body">
-                <form id="add_form">
+                <form id="add_form" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="Org_Name">Name</label>
                         <input name="Org_Name" class="form-control" placeholder="org name" type="text" id="Org_Name" />
@@ -60,6 +62,10 @@
                     <div class="form-group">
                         <label for="About">About</label>
                         <textarea name="About" class="form-control" placeholder="About" id="About"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="About">Logo</label>
+                        <input type="file" name="ImagePath" id="ImagePath" />
                     </div>
                 </form>
             </div>
@@ -107,8 +113,16 @@
                     </div>
                     <div class="form-group">
                         <label for="About">About</label>
-                        <textarea name="About" class="form-control" placeholder="About" type="text" id="About" ></textarea>
+                        <input name="About" class="form-control" placeholder="About" type="text" id="About" />
                     </div>
+                    <div class="form-group">
+                        <label for="About">About</label>
+                        <input name="About" class="form-control" placeholder="About" type="text" id="About" />
+                    </div>
+                    @*<div class="form-group">
+                            <label for="ImagePath">Logo</label>
+                            <input name="ImagePath" class="form-control" placeholder="About" type="text" id="ImagePath" />
+                        </div>*@
                 </form>
             </div>
 
@@ -126,7 +140,7 @@
 
     <!-- Bootstrap3 Design -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
@@ -148,7 +162,7 @@
                     { "data": "About", "name": "About", "autoWidth": true },
                     {
                         "render": function (data, type, JsonResultRow, meta) {
-                            return '<img src="' + JsonResultRow.ImagePath + '" style="width:50px;height:50px;">';
+                            return '<img src="'+ JsonResultRow.ImagePath + '" style="width:50px;height:50px;">';
                         }
 
                     },
@@ -158,7 +172,13 @@
                             return '<a href="/Organizations/InformationDetails/'+data+'">View</a>';
                         }
                     },
-                   
+                    @*{
+                        "mRender": function(data, type, full) {
+                            return '<a href='+
+                                '@Url.Action("Details", "Organizations")'+data +
+                                '>View</a>';
+                        }
+                    },*@
                     {
                         "data": "Id",
                         "render": function(data) {
@@ -173,10 +193,11 @@
                     }
 
                 ],
-                "serverSide":
-                    "true",
-                "order":
-                    [0, "asc"],
+                "serverSide":true,
+                "stateSave": true,
+                "Info": true,
+                "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                "order":[0,'asc'],
                 "processing":
                     true,
                 "language":
@@ -191,6 +212,7 @@
 
                         $('#add_form')[0].reset();
                         $('#addORG').modal({
+
                             keyboard: false,
                             backdrop: 'static'
                         });
@@ -281,6 +303,7 @@
                                 $('#edit_form #Address').val(data.Address);
                                 $('#edit_form #ContactNo').val(data.ContactNo);
                                 $('#edit_form #About').val(data.About);
+                                $('#edit_form #ImagePath').val(data.ImagePath);
 
 
                                 $('#editORG').modal('show');
@@ -408,5 +431,5 @@
     </script>
 }
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Create")
 </div>
