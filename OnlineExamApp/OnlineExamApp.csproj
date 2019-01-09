@@ -701,7 +701,6 @@
     <Content Include="Scripts\ckeditor\ckeditor.asp" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
-<<<<<<< HEAD
     <Content Include="concept-master\assets\vendor\fonts\circular-std\CircularStd-Black.woff" />
     <Content Include="concept-master\assets\vendor\fonts\circular-std\CircularStd-BlackItalic.woff" />
     <Content Include="concept-master\assets\vendor\fonts\circular-std\CircularStd-Bold.woff" />
@@ -758,10 +757,8 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-=======
     <Content Include="Scripts\durationpicker\LICENSE" />
     <Content Include="Scripts\durationpicker\README.md" />
->>>>>>> 704e088848701987fd6ef55039294ca892c57669
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
