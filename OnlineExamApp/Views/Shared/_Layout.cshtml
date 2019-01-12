@@ -11,6 +11,8 @@
     <link href="~/concept-master/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="~/concept-master/assets/libs/css/style.css">
     <link rel="stylesheet" href="~/concept-master/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/ckeditor")
 </head>
 <body>
     <!-- ============================================================== -->
@@ -569,7 +571,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
+            <!-- =========
             <!-- end footer -->
             <!-- ============================================================== -->
         </div>
@@ -578,10 +580,13 @@
     <!-- end main wrapper -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
     <script src="~/concept-master/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="~/concept-master/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/concept-master/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="~/concept-master/assets/libs/js/main-js.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 

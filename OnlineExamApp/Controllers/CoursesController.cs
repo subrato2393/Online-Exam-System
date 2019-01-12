@@ -25,7 +25,7 @@ namespace OnlineExamApp.Controllers
             var courses = db.Courses.Include(c => c.Organization);
             return View(courses.ToList());
         }
-
+       
         // GET: Courses/Details/5
         public ActionResult Details(int? id)
         {

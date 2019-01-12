@@ -66,16 +66,14 @@
             @Html.Label("CourseTags", "Tags", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="form-control tags" id="tags">
-                    <input type="text" class="labelinput">
-                    <input type="hidden" name="CourseTag">
+                    <input name="CourseTag" type="text" class="labelinput">
+                    <input  type="hidden">
                 </div>
             </div>
         </div>
-
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -86,18 +84,20 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/tagInput.css" rel="stylesheet" />
-    <script src="~/Scripts/tagInput.js"></script>
-    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Tagging-Input-Bootstrap-4/dist/jquery-tagsinput.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Tagging-Input-Bootstrap-4/jquery-color-master/jquery.color.svg-names.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Tagging-Input-Bootstrap-4/dist/jquery-tagsinput.min.js"></script>
+    @*@Scripts.Render("~/bundles/jqueryval")*@
     <script type="text/javascript">
-        $(function () {
-            $('#tags').tagInput();
+        $(document).ready(function () {           
+            $('#tags').tagsInput();
+        
+            $('#tags').tagsInput({
+                labelClass: "label label-primary"          
+            });
         });
-        $('#tags').tagInput({
-            labelClass: "label label-primary"
-        });
-
     </script>
 }

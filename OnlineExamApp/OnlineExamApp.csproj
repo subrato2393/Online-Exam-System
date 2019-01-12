@@ -739,6 +739,8 @@
     <Content Include="concept-master\assets\vendor\summernote\editor-fonts\summernote4c4d.woff" />
     <Content Include="concept-master\assets\vendor\summernote\editor-fonts\summernoted41d.eot" />
     <Content Include="concept-master\README.md" />
+    <Content Include="Scripts\durationpicker\LICENSE" />
+    <Content Include="Scripts\durationpicker\README.md" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -757,8 +759,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Scripts\durationpicker\LICENSE" />
-    <Content Include="Scripts\durationpicker\README.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
@@ -1272,6 +1272,60 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\.gitignore" />
+    <Content Include="Tagging-Input-Bootstrap-4\dist\jquery-tagsinput.min.css" />
+    <Content Include="Tagging-Input-Bootstrap-4\dist\jquery-tagsinput.min.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\gulpfile.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.gitattributes" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.gitignore" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\AUTHORS.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\build\release.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.10.2\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.10.2\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.11.3\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.11.3\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.12.4\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.12.4\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.5.2\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.5.2\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.6.4\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.6.4\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.7.2\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.7.2\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.8.3\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.8.3\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.9.1\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-1.9.1\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-2.0.3\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-2.0.3\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-2.1.4\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-2.1.4\MIT-LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-2.2.4\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-2.2.4\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.0.0\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.0.0\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.1.1\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.1.1\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.2.1\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.2.1\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.3.1\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\jquery-3.3.1\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\qunit\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\qunit\qunit.css" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\external\qunit\qunit.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\Gruntfile.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\jquery.color.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\jquery.color.svg-names.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\LICENSE.txt" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\test\data\swarminject.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\test\index.html" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\test\jquery.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\test\test.html" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\test\unit\color.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\karma.conf.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\sample\demo.html" />
+    <Content Include="Tagging-Input-Bootstrap-4\spec\jquery-tagsinput.spec.js" />
+    <Content Include="Tagging-Input-Bootstrap-4\src\jquery-tagsinput.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1341,6 +1395,24 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Tagging-Input-Bootstrap-4\dist\maps\jquery-tagsinput.min.css.map" />
+    <Content Include="Tagging-Input-Bootstrap-4\LICENSE" />
+    <Content Include="Tagging-Input-Bootstrap-4\package.json" />
+    <Content Include="Tagging-Input-Bootstrap-4\README.md" />
+    <Content Include="Tagging-Input-Bootstrap-4\src\jquery-tagsinput.scss" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.eslintignore" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.eslintrc.json" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.mailmap" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.npmrc" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\.travis.yml" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\bower.json" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\build\browserstack-current.json" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\build\browserstack-legacy.json" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\build\run-browserstack.sh" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\CONTRIBUTING.md" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\package.json" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\README.md" />
+    <Content Include="Tagging-Input-Bootstrap-4\jquery-color-master\test\.eslintrc.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1366,10 +1438,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
